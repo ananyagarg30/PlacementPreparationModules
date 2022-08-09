@@ -1,0 +1,53 @@
+REVERSE BITS (JAVA):
+class Solution {
+public int reverseBits(int n) { 
+    int res = 0;
+	
+    for(int i=0;i<32;i++){
+	
+		   int lsb = n & 1; //calculate least significant bit
+		
+        lsb = lsb << (31-i);  	// left shift lsb bit by (31-i) times
+		
+        res = res | lsb;  // update result by performing OR between result and least significant bit
+		
+        n = n >> 1;  // lsb is added to the result, so right shift the number by one
+        }
+    return res;
+   }
+}
+
+SINGLE NUMBER (JAVA):
+class Solution {
+    public int singleNumber(int[] nums) {
+        int single = 0;
+        int count = nums.length;
+
+        if (count == 0) {
+                return 0;
+        }
+
+        Arrays.sort(nums);
+        while (count >= 0) {
+            if (count == 1) {
+                return nums[count - 1];
+            }
+
+            if (nums[count - 2] != nums[count - 1]) {
+                    single = nums[count -1];
+                    break;
+                }
+                count -= 2;
+            }
+        return single;
+    }
+}
+OR
+class Solution {
+public int singleNumber(int[] nums) {
+	int xor = 0;
+	for(int n :nums)
+		xor = xor ^ n ;
+	return xor;
+	}
+}
